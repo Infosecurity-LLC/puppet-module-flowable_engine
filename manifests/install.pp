@@ -1,7 +1,5 @@
 class flowable_engine::install(
 
-  include 'archive'
-
   $ensure           = $flowable_engine::ensure,
   $version          = $flowable_engine::version,
   $source_file_url  = $flowable_engine::$source_file_url,
@@ -13,6 +11,8 @@ class flowable_engine::install(
   $webapps_folder   = $flowable_engine::$webapps_folder,
 
 ){
+
+  include 'archive'
 
   'archive': {
     archive { "$webapps_folder/$source_file_name.$source_file_ext":
