@@ -1,5 +1,7 @@
 class flowable_engine::install(
 
+  include 'archive'
+
   $ensure           = $flowable_engine::ensure,
   $version          = $flowable_engine::version,
   $source_file_url  = $flowable_engine::$source_file_url,
@@ -12,16 +14,22 @@ class flowable_engine::install(
 
 ){
 
-  exec{'get_flowable_engine':
-    creates => $webapps_folder,
-    command => "https_proxy=$proxy_url wget $source_file_url -O $webapps_folder",
-    command => "unzip -j $webapps_folder/$source_file_name.$source_file_ext $source_file_name/wars/*.war -d $webapps_folder",
-    command => "rm -f $webapps_folder/$source_file_name.$source_file_ext",
-  }
-
-  file{ $webapps_folder:
-    mode => 0755,
-    require => Exec["get_flowable_engine"],
+  'archive': {
+    archive { "$webapps_folder/$source_file_name.$source_file_ext":
+      ensure          => present,
+      extract         => true,
+      extract_command => "unzip -j %s $source_file_name/wars/*.war",
+      extract_path    => "$webapps_folder",
+      source          => "$source_file_url/$source_file_name.$source_file_ext",
+      creates         => "$webapps_folder",
+      cleanup         => true,
+      proxy_server    => $proxy_url,
+      before          => File[$webapps_folder],
+      require         => [
+        File[$webapps_folder],
+        File[$webapps_folder/$source_file_name.$source_file_ext],
+      ],
+    }
   }
 
   $_ensure = $ensure ? {
