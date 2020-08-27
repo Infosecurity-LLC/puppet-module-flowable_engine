@@ -14,6 +14,15 @@ class flowable_engine::install(
 
   include 'archive'
 
+  $_ensure = $ensure ? {
+    'absent' => $ensure,
+    default  => $version,
+  }
+
+  package { $package_name:
+    ensure => $_ensure,
+  }
+
   'archive': {
     archive { "$webapps_folder/$source_file_name.$source_file_ext":
       ensure          => present,
@@ -30,15 +39,6 @@ class flowable_engine::install(
         File[$webapps_folder/$source_file_name.$source_file_ext],
       ],
     }
-  }
-
-  $_ensure = $ensure ? {
-    'absent' => $ensure,
-    default  => $version,
-  }
-
-  package { $package_name:
-    ensure => $_ensure,
   }
 
 }
