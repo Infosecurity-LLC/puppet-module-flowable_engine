@@ -58,7 +58,6 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     source => "puppet:///modules/flowable_engine/index.html",
-    require => File['/var/lib/tomcat/webapps/ROOT'],
   }
 
   file { $config_file_tomcat:
