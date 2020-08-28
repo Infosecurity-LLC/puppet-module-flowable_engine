@@ -22,22 +22,19 @@ class flowable_engine::install(
     ensure => $_ensure,
   }
 
-  'archive': {
-    archive { "$webapps_folder/$source_file_name":
-      ensure          => present,
-      extract         => true,
-      extract_command => "unzip -j %s *.war",
-      extract_path    => "$webapps_folder",
-      source          => "$source_file_url",
-      creates         => "$webapps_folder",
-      cleanup         => true,
-      proxy_server    => $proxy_url,
-      before          => File[$webapps_folder],
-      require         => [
-        File[$webapps_folder],
-        File[$webapps_folder/$source_file_name],
-      ],
-    }
+  archive { "$webapps_folder/$source_file_name":
+    ensure          => present,
+    extract         => true,
+    extract_command => "unzip -j %s *.war",
+    extract_path    => "$webapps_folder",
+    source          => "$source_file_url",
+    creates         => "$webapps_folder",
+    cleanup         => true,
+    proxy_server    => $proxy_url,
+    before          => File[$webapps_folder],
+    require         => [
+      File[$webapps_folder],
+      File[$webapps_folder/$source_file_name],
+    ],
   }
-
 }
