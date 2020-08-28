@@ -8,8 +8,8 @@ class flowable_engine::config(
   $config_file_rest             = $flowable_engine::config_file_rest,
   $config_file_task             = $flowable_engine::config_file_task,
 
-  $config_owner                 = 'root',
-  $config_group                 = 'root',
+  $config_owner                 = 'tomcat',
+  $config_group                 = 'tomcat',
   $config_mode                  = '0644',
 
   $config_template_tomcat       = $flowable_engine::config_template_tomcat,
@@ -53,16 +53,16 @@ class flowable_engine::config(
 ) {
 
   file { $index_file_flowable:
-    ensure  => 'file',
+    ensure => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
-    content => $index_file_flowable,
+    source => "puppet:///modules/flowable_engine/index.html",
     require => File['/var/lib/tomcat/webapps/ROOT'],
   }
 
   file { $config_file_tomcat:
-    ensure  => 'file',
+    ensure  => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
@@ -72,7 +72,7 @@ class flowable_engine::config(
   }
 
   file { $config_file_admin:
-    ensure  => 'file',
+    ensure  => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
@@ -82,7 +82,7 @@ class flowable_engine::config(
   }
 
   file { $config_file_idm:
-    ensure  => 'file',
+    ensure  => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
@@ -92,7 +92,7 @@ class flowable_engine::config(
   }
 
   file { $config_file_modeler:
-    ensure  => 'file',
+    ensure  => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
@@ -102,7 +102,7 @@ class flowable_engine::config(
   }
 
   file { $config_file_rest:
-    ensure  => 'file',
+    ensure  => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
@@ -112,7 +112,7 @@ class flowable_engine::config(
   }
 
   file { $config_file_task:
-    ensure  => 'file',
+    ensure  => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
