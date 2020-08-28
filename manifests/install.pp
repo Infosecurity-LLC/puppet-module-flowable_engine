@@ -22,7 +22,7 @@ class flowable_engine::install(
       "http_proxy=$proxy_url",
       "https_proxy=$proxy_url",
     ],
-    command => "/bin/curl -x\"$proxy_url\" $source_file_url -o ${webapps_folder}/${source_file_name}",
+    command => "/bin/curl -x $proxy_url $source_file_url -o ${webapps_folder}/${source_file_name}",
   }
 
   archive { "${webapps_folder}/${source_file_name}":
