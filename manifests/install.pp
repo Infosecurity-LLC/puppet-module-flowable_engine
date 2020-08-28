@@ -19,7 +19,7 @@ class flowable_engine::install(
   }
 
   package { $package_name:
-    ensure => $_ensure,
+    ensure => present,
   }
 
   file { $webapps_folder:
@@ -40,7 +40,9 @@ class flowable_engine::install(
     proxy_server    => "${proxy_url}",
     before          => File["${webapps_folder}"],
     require         => [
-      Package["${package_name}", 'wget', 'unzip'],
+      Package["${package_name}"],
+      Package['wget'],
+      Package['unzip'],
     ],
   }
 }
