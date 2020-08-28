@@ -35,7 +35,7 @@ class flowable_engine::install(
     proxy_server    => "${proxy_url}",
     before          => File["${webapps_folder}"],
     require         => [
-      Package["${package_name}"],
+      Package[$package_name],
       Package['wget'],
       Package['unzip'],
     ],
