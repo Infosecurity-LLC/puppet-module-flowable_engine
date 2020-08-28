@@ -58,7 +58,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => $index_file_flowable,
-    require => Package[$package_name],
+    require => File['/var/lib/tomcat/webapps/ROOT'],
   }
 
   file { $config_file_tomcat:
@@ -67,7 +67,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_tomcat),
-    require => Package[$package_name],
+    require => File['/etc/tomcat'],
     notify  => Service[$service_name],
   }
 
@@ -77,7 +77,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_admin),
-    require => Package[$package_name],
+    require => File['/var/lib/tomcat/webapps/flowable-admin/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
@@ -87,7 +87,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_idm),
-    require => Package[$package_name],
+    require => File['/var/lib/tomcat/webapps/flowable-idm/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
@@ -97,7 +97,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_modeler),
-    require => Package[$package_name],
+    require => File['/var/lib/tomcat/webapps/flowable-modeler/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
@@ -107,7 +107,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_rest),
-    require => Package[$package_name],
+    require => File['/var/lib/tomcat/webapps/flowable-rest/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
@@ -117,7 +117,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_task),
-    require => Package[$package_name],
+    require => File['/var/lib/tomcat/webapps/flowable-task/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
