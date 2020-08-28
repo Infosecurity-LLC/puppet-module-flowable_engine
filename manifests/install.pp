@@ -17,20 +17,23 @@ class flowable_engine::install(
     ensure => present,
   }
 
-  exec { $source_file_name:
-    environment => [
-      "http_proxy=$proxy_url",
-      "https_proxy=$proxy_url",
-    ],
-    command => "/bin/curl -x $proxy_url $source_file_url -o ${webapps_folder}/${source_file_name}",
-  }
+#  exec { $source_file_name:
+#    environment => [
+#      "http_proxy=$proxy_url",
+#      "https_proxy=$proxy_url",
+#    ],
+#    command => "/bin/curl -x $proxy_url $source_file_url -o ${webapps_folder}/${source_file_name}",
+#  }
 
   archive { "${webapps_folder}/${source_file_name}":
     ensure          => present,
-    source          => "${webapps_folder}/${source_file_name}",
+    source          => $source_file_url,
     extract         => true,
+    temp_dir        => $webapps_folder,
     extract_path    => $webapps_folder,
     extract_command => "unzip -j %s *.war",
+    proxy_server    => $proxy_url,
+    proxy_type      => 'https',
     cleanup         => true,
   }
 
