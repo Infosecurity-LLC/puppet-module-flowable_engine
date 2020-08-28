@@ -11,15 +11,15 @@ class flowable_engine::install(
 
 ){
 
-  include 'archive'
+  include 'wget'
 
   package { $package_name:
     ensure => present,
   }
 
-  package { 'unzip':
-    ensure => present,
-  }
+#  package { 'unzip':
+#    ensure => present,
+#  }
 
   file { $webapps_folder:
     ensure => directory,
@@ -28,21 +28,34 @@ class flowable_engine::install(
     mode   => '0755',
   }
 
-  archive { "${source_file_name}":
-    ensure          => present,
-    extract         => true,
-    extract_command => "unzip -j %s *.war",
-    extract_path    => "${webapps_folder}",
-    source          => "${source_file_url}",
-    creates         => "${webapps_folder}/ROOT",
-    cleanup         => true,
-    proxy_server    => "${proxy_url}",
-    before          => File["${webapps_folder}"],
-    require         => [
-      Package[$package_name],
-      Package['wget'],
-      Package['unzip'],
-    ],
+  wget::fetch { "Download Flowable":
+    source      => $source_file_url,
+    destination => $webapps_folder,
+    timeout     => 0,
+    verbose     => true,
   }
+
+  exec { "unzip -j $source_file_name *.war -d $webapps_folder":
+    cwd     => $webapps_folder,
+    creates => $webapps_folder,
+    path    => ['/usr/bin', '/usr/sbin',],
+  }
+
+#  archive { "${source_file_name}":
+#    ensure          => present,
+#    extract         => true,
+#    extract_command => "unzip -j %s *.war",
+#    extract_path    => "${webapps_folder}",
+#    source          => "${source_file_url}",
+#    creates         => "${webapps_folder}/ROOT",
+#    cleanup         => true,
+#    proxy_server    => "${proxy_url}",
+#    before          => File["${webapps_folder}"],
+#    require         => [
+#      Package[$package_name],
+#      Package['wget'],
+#      Package['unzip'],
+#    ],
+#  }
 
 }
