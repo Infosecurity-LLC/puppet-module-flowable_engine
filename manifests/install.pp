@@ -22,7 +22,7 @@ class flowable_engine::install(
     mode   => '0755',
   }
 
-  exec { $source_file_name:
+  exec { 'Get Flowable':
     cwd     => $webapps_folder,
     command => "/bin/wget -O ${source_file_name} ${source_file_url}",
     path    => ['/usr/bin', '/usr/sbin',],
@@ -31,7 +31,6 @@ class flowable_engine::install(
 
   exec { "unzip -j $source_file_name *.war -d $webapps_folder":
     cwd     => $webapps_folder,
-    require => $source_file_name,
     path    => ['/usr/bin', '/usr/sbin',],
   }
 
