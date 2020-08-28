@@ -17,15 +17,12 @@ class flowable_engine::install(
     ensure => present,
   }
 
-  exec{ $source_file_name:
-    command => "wget $source_file_url -O $webapps_folder",
-    creates => $webapps_folder,
-  }
-
-  file{ "${webapps_folder}/${source_file_name}":
-    ensure => present,
-    mode => 0644,
-    require => Exec[$source_file_name],
+  exec { $source_file_name:
+    environment => [
+      "http_proxy=$proxy_url",
+      "https_proxy=$proxy_url",
+    ],
+    command => "/bin/wget -o $webapps_folder $source_file_url",
   }
 
 #  archive { "${webapps_folder}/${source_file_name}":

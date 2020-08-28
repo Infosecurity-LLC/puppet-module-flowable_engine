@@ -24,12 +24,12 @@ class flowable_engine::params {
   $config_file_rest             = '/var/lib/tomcat/webapps/flowable-rest/WEB-INF/classes/flowable-default.properties'
   $config_file_task             = '/var/lib/tomcat/webapps/flowable-task/WEB-INF/classes/flowable-default.properties'
 
-  $config_template_tomcat       = 'iss/flowable_engine/tomcat/server.xml.erb'
-  $config_template_admin        = 'iss/flowable_engine/admin/flowable-default.properties.erb'
-  $config_template_idm          = 'iss/flowable_engine/idm/flowable-default.properties.erb'
-  $config_template_modeler      = 'iss/flowable_engine/modeler/flowable-default.properties.erb'
-  $config_template_rest         = 'iss/flowable_engine/rest/flowable-default.properties.erb'
-  $config_template_task         = 'iss/flowable_engine/task/flowable-default.properties.erb'
+  $config_template_tomcat       = 'flowable_engine/server.xml.erb'
+  $config_template_admin        = 'flowable_engine/admin-flowable-default.properties.erb'
+  $config_template_idm          = 'flowable_engine/idm-flowable-default.properties.erb'
+  $config_template_modeler      = 'flowable_engine/modeler-flowable-default.properties.erb'
+  $config_template_rest         = 'flowable_engine/rest-flowable-default.properties.erb'
+  $config_template_task         = 'flowable_engine/task-flowable-default.properties.erb'
 
   $flowable_datasource_driver   = ''
   $flowable_datasource_url      = ''
