@@ -11,28 +11,29 @@ class flowable_engine::install(
 
 ){
 
+  include 'archive'
+
   package { $package_name:
     ensure => present,
   }
 
-  file { $webapps_folder:
-    ensure => directory,
-    owner  => 'tomcat',
-    group  => 'tomcat',
-    mode   => '0755',
+#  file { $webapps_folder:
+#    ensure => directory,
+#    owner  => 'tomcat',
+#    group  => 'tomcat',
+#    mode   => '0755',
+#  }
+
+  archive { $webapps_folder:
+    ensure          => present,
+    extract         => true,
+    extract_path    => $webapps_folder,
+    extract_command => "unzip -j %s *.war",
+    source          => $source_file_url,
+    creates         => "${webapps_folder}/ROOT",
+    cleanup         => true,
   }
 
-  exec { 'Get Flowable':
-    cwd     => $webapps_folder,
-    command => "/bin/wget -O ${source_file_name} ${source_file_url}",
-    path    => ['/usr/bin', '/usr/sbin',],
-    creates => "${webapps_folder}/ROOT",
-  }
-
-  exec { "unzip -j $source_file_name *.war -d $webapps_folder":
-    cwd     => $webapps_folder,
-    path    => ['/usr/bin', '/usr/sbin',],
-  }
 
 #  archive { "${source_file_name}":
 #    ensure          => present,
