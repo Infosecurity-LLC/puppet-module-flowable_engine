@@ -13,21 +13,8 @@ class flowable_engine::install(
 
   include 'archive'
 
-  archive { "${webapps_folder}/${source_file_name}":
-    ensure          => present,
-    extract         => true,
-    extract_command => "unzip -j %s *.war",
-    extract_path    => "${webapps_folder}",
-    source          => "${source_file_url}",
-    creates         => "${webapps_folder}",
-    cleanup         => true,
-    proxy_server    => "${proxy_url}",
-    before          => File["${webapps_folder}"],
-    require         => [
-      Package["${package_name}"],
-      Package['wget'],
-      Package['unzip'],
-    ],
+  package { $package_name:
+    ensure => present,
   }
 
   file { $webapps_folder:
@@ -37,8 +24,21 @@ class flowable_engine::install(
     mode   => '0755',
   }
 
-  package { $package_name:
-    ensure => present,
+  archive { "${webapps_folder}/${source_file_name}":
+    ensure          => present,
+    extract         => true,
+    extract_command => "unzip -j %s *.war",
+    extract_path    => "${webapps_folder}",
+    source          => "${source_file_url}",
+    creates         => "${webapps_folder}/ROOT",
+    cleanup         => true,
+    proxy_server    => "${proxy_url}",
+    before          => File["${webapps_folder}"],
+    require         => [
+      Package["${package_name}"],
+      Package['wget'],
+      Package['unzip'],
+    ],
   }
 
 }
