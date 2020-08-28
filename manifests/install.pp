@@ -22,14 +22,6 @@ class flowable_engine::install(
     ensure => $_ensure,
   }
 
-  package { 'wget':
-    ensure => present,
-  }
-
-  package { 'unzip':
-    ensure => present,
-  }
-
   archive { "${webapps_folder}/${source_file_name}":
     ensure          => present,
     extract         => true,
