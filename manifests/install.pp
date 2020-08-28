@@ -41,7 +41,6 @@ class flowable_engine::install(
     before          => File["${webapps_folder}"],
     require         => [
       Package["${package_name}", 'wget', 'unzip'],
-      File["${webapps_folder}/${source_file_name}"],
     ],
   }
 }
