@@ -58,7 +58,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => $index_file_flowable,
-    require => Package["$package_name"],
+    require => Package[$package_name],
   }
 
   file { $config_file_tomcat:
@@ -67,8 +67,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_tomcat),
-    require => Package["$package_name"],
-    notify  => Service["$service_name"],
+    require => Package[$package_name],
+    notify  => Service[$service_name],
   }
 
   file { $config_file_admin:
@@ -77,8 +77,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_admin),
-    require => Package["$package_name"],
-    notify  => Service["$service_name"],
+    require => Package[$package_name],
+    notify  => Service[$service_name],
   }
 
   file { $config_file_idm:
@@ -87,8 +87,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_idm),
-    require => Package["$package_name"],
-    notify  => Service["$service_name"],
+    require => Package[$package_name],
+    notify  => Service[$service_name],
   }
 
   file { $config_file_modeler:
@@ -97,8 +97,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_modeler),
-    require => Package["$package_name"],
-    notify  => Service["$service_name"],
+    require => Package[$package_name],
+    notify  => Service[$service_name],
   }
 
   file { $config_file_rest:
@@ -107,8 +107,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_rest),
-    require => Package["$package_name"],
-    notify  => Service["$service_name"],
+    require => Package[$package_name],
+    notify  => Service[$service_name],
   }
 
   file { $config_file_task:
@@ -117,8 +117,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_task),
-    require => Package["$package_name"],
-    notify  => Service["$service_name"],
+    require => Package[$package_name],
+    notify  => Service[$service_name],
   }
 
 }
