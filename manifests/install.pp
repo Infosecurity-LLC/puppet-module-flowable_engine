@@ -31,7 +31,7 @@ class flowable_engine::install(
 
   exec { "unzip -j $source_file_name *.war -d $webapps_folder":
     cwd     => $webapps_folder,
-    creates => $webapps_folder,
+    require => $source_file_name,
     path    => ['/usr/bin', '/usr/sbin',],
   }
 
