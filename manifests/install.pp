@@ -11,15 +11,9 @@ class flowable_engine::install(
 
 ){
 
-  include 'wget'
-
   package { $package_name:
     ensure => present,
   }
-
-#  package { 'unzip':
-#    ensure => present,
-#  }
 
   file { $webapps_folder:
     ensure => directory,
@@ -28,11 +22,11 @@ class flowable_engine::install(
     mode   => '0755',
   }
 
-  wget::fetch { "Download Flowable":
-    source      => $source_file_url,
-    destination => $webapps_folder,
-    timeout     => 0,
-    verbose     => true,
+  exec { $source_file_name:
+    cwd     => $webapps_folder,
+    command => "/bin/wget -O ${source_file_name} ${source_file_url}",
+    path    => ['/usr/bin', '/usr/sbin',],
+    creates => "${webapps_folder}/ROOT",
   }
 
   exec { "unzip -j $source_file_name *.war -d $webapps_folder":

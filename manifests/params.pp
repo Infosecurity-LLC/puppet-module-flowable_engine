@@ -2,7 +2,7 @@ class flowable_engine::params {
 
   $ensure                       = 'present'
   $version                      = 'installed'
-  $package_name                 = [ 'tomcat', 'tomcat-webapps', 'postgresql-jdbc', 'unzip' ]
+  $package_name                 = [ 'tomcat', 'tomcat-webapps', 'postgresql-jdbc', 'wget', 'unzip' ]
   $service_name                 = 'flowable_engine'
   $service_ensure               = 'running'
   $service_enabled              = true
