@@ -26,13 +26,14 @@ class flowable_engine::install(
 #  }
 
   archive { "${webapps_folder}/${source_file_name}":
-    ensure          => present,
+    ensure          => absent,
     provider        => 'wget',
     extract         => true,
     extract_path    => $webapps_folder,
     extract_command => "unzip -j %s *.war",
     source          => $source_file_url,
     proxy_server    => $proxy_url,
+    proxy_type      => 'https',
     cleanup         => true,
     require         => Package['wget', 'unzip'],
   }
