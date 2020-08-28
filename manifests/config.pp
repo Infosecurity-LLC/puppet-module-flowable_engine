@@ -66,7 +66,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_tomcat),
-    require => File[$config_file_tomcat]
+#    require => File[$config_file_tomcat]
 #    notify  => Service[$service_name],
   }
 
@@ -76,7 +76,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_admin),
-    require => File[$config_file_admin]
+#    require => File[$config_file_admin]
 #    notify  => Service[$service_name],
   }
 
@@ -86,7 +86,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_idm),
-    require => File[$config_file_idm]
+#    require => File[$config_file_idm]
 #    notify  => Service[$service_name],
   }
 
@@ -96,7 +96,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_modeler),
-    require => File[$config_file_modeler]
+#    require => File[$config_file_modeler]
 #    notify  => Service[$service_name],
   }
 
@@ -106,7 +106,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_rest),
-    require => File[$config_file_rest]
+#    require => File[$config_file_rest]
 #    notify  => Service[$service_name],
   }
 
@@ -116,7 +116,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_task),
-    require => File[$config_file_task]
+#    require => File[$config_file_task]
 #    notify  => Service[$service_name],
   }
 
