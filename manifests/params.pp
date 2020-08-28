@@ -10,9 +10,8 @@ class flowable_engine::params {
   $service_port                 = ''
   $redirect_port                = ''
 
-  $source_file_url              = 'https://github.com/flowable/flowable-engine/releases/download/flowable-6.5.0'
-  $source_file_name             = 'flowable-6.5.0'
-  $source_file_ext              = 'zip'
+  $source_file_url              = 'https://github.com/flowable/flowable-engine/releases/download/flowable-6.5.0/flowable-6.5.0.zip'
+  $source_file_name             = 'flowable-6.5.0.zip'
   $proxy_url                    = ''
 
   $webapps_folder               = '/var/lib/tomcat/webapps'
