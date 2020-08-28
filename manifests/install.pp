@@ -13,22 +13,6 @@ class flowable_engine::install(
 
   include 'archive'
 
-  $_ensure = $ensure ? {
-    'absent' => $ensure,
-    default  => $version,
-  }
-
-  package { $package_name:
-    ensure => present,
-  }
-
-  file { $webapps_folder:
-    ensure => directory,
-    owner  => 'tomcat',
-    group  => 'tomcat',
-    mode   => '0755',
-  }
-
   archive { "${webapps_folder}/${source_file_name}":
     ensure          => present,
     extract         => true,
@@ -45,4 +29,16 @@ class flowable_engine::install(
       Package['unzip'],
     ],
   }
+
+  file { $webapps_folder:
+    ensure => directory,
+    owner  => 'tomcat',
+    group  => 'tomcat',
+    mode   => '0755',
+  }
+
+  package { $package_name:
+    ensure => present,
+  }
+
 }
