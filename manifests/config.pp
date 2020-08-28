@@ -66,7 +66,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_tomcat),
-    require => File['/etc/tomcat/tomcat.conf']
+    require => File['/etc/tomcat']
 #    notify  => Service[$service_name],
   }
 
