@@ -17,6 +17,10 @@ class flowable_engine::install(
     ensure => present,
   }
 
+  package { 'unzip':
+    ensure => present,
+  }
+
   file { $webapps_folder:
     ensure => directory,
     owner  => 'tomcat',
@@ -24,7 +28,7 @@ class flowable_engine::install(
     mode   => '0755',
   }
 
-  archive { "${webapps_folder}/${source_file_name}":
+  archive { "${source_file_name}":
     ensure          => present,
     extract         => true,
     extract_command => "unzip -j %s *.war",
