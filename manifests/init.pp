@@ -8,8 +8,8 @@ class flowable_engine(
   $service_port                 = $flowable_engine::params::service_port,
   $redirect_port                = $flowable_engine::params::redirect_port,
 
-  $source_file_url              = $flowable_engine::params::$source_file_url,
-  $source_file_name             = $flowable_engine::params::$source_file_name,
+  $source_file_url              = $flowable_engine::params::source_file_url,
+  $source_file_name             = $flowable_engine::params::source_file_name,
 
   $proxy_url                    = $flowable_engine::params::proxy_url,
 
