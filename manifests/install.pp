@@ -22,6 +22,13 @@ class flowable_engine::install(
     ensure => $_ensure,
   }
 
+  file { $webapps_folder:
+    ensure => directory,
+    owner  => 'tomcat',
+    group  => 'tomcat',
+    mode   => '0755',
+  }
+
   archive { "${webapps_folder}/${source_file_name}":
     ensure          => present,
     extract         => true,
