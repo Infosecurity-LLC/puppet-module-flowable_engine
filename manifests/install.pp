@@ -26,7 +26,7 @@ class flowable_engine::install(
 #  }
 
   archive { "${webapps_folder}/${source_file_name}":
-    ensure          => absent,
+    ensure          => present,
     provider        => 'wget',
     extract         => true,
     extract_path    => $webapps_folder,
