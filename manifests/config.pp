@@ -1,5 +1,9 @@
 class flowable_engine::config(
 
+  $service_hostname             = $flowable_engine::service_hostname,
+  $service_port                 = $flowable_engine::service_port,
+  $redirect_port                = $flowable_engine::redirect_port,
+
   $index_file_flowable          = $flowable_engine::index_file_flowable,
   $config_file_tomcat           = $flowable_engine::config_file_tomcat,
   $config_file_admin            = $flowable_engine::config_file_admin,
