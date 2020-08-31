@@ -21,15 +21,15 @@ class flowable_engine::service(
       hasrestart => true,
       hasstatus  => true,
       require    => Package[$package_name],
-      subscribe => [
-        File[$index_file_flowable],
-        File[$config_file_tomcat],
-        File[$config_file_admin],
-        File[$config_file_idm],
-        File[$config_file_modeler],
-        File[$config_file_rest],
-        File[$config_file_task],
-      ],
+#      subscribe => [
+#        File[$index_file_flowable],
+#        File[$config_file_tomcat],
+#        File[$config_file_admin],
+#        File[$config_file_idm],
+#        File[$config_file_modeler],
+#        File[$config_file_rest],
+#        File[$config_file_task],
+#      ],
     }
 
 }
