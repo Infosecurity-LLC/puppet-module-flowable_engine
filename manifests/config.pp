@@ -1,5 +1,7 @@
 class flowable_engine::config(
 
+  $package_name                 = $flowable_engine::package_name,
+  $service_name                 = $flowable_engine::service_name,
   $service_hostname             = $flowable_engine::service_hostname,
   $service_port                 = $flowable_engine::service_port,
   $redirect_port                = $flowable_engine::redirect_port,
@@ -22,9 +24,6 @@ class flowable_engine::config(
   $config_template_modeler      = $flowable_engine::config_template_modeler,
   $config_template_rest         = $flowable_engine::config_template_rest,
   $config_template_task         = $flowable_engine::config_template_task,
-
-  $package_name                 = $flowable_engine::package_name,
-  $service_name                 = $flowable_engine::service_name,
 
   $flowable_datasource_driver   = $flowable_engine::flowable_datasource_driver,
   $flowable_datasource_url      = $flowable_engine::flowable_datasource_url,
@@ -55,6 +54,11 @@ class flowable_engine::config(
   $flowable_smtp_auth           = $flowable_engine::flowable_smtp_auth,
 
 ) {
+
+  exec { $service_name:
+    command => "systemctl restart $service_name",
+    refreshonly => true,
+  }
 
   exec { 'index_file_flowable_folder':
     command => '/bin/true',
@@ -92,14 +96,13 @@ class flowable_engine::config(
   }
 
   file { $index_file_flowable:
-    ensure => file,
+    ensure  => file,
     owner   => $config_owner,
     group   => $config_group,
     mode    => $config_mode,
-    source => "puppet:///modules/flowable_engine/index.html",
+    source  => "puppet:///modules/flowable_engine/index.html",
     require => Exec['index_file_flowable_folder'],
-#    require => Service[$service_name],
-#    notify  => Service[$service_name],
+    notify  => Exec[$service_name],
   }
 
   file { $config_file_tomcat:
@@ -109,7 +112,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_tomcat),
     require => Exec['config_file_tomcat_folder'],
-#    notify  => Service[$service_name],
+    notify  => Exec[$service_name],
   }
 
   file { $config_file_admin:
@@ -119,8 +122,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_admin),
     require => Exec['config_file_admin_folder'],
-#    require => Service[$service_name],
-#    notify  => Service[$service_name],
+    notify  => Exec[$service_name],
   }
 
   file { $config_file_idm:
@@ -130,8 +132,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_idm),
     require => Exec['config_file_idm_folder'],
-#    require => Service[$service_name],
-#    notify  => Service[$service_name],
+    notify  => Exec[$service_name],
   }
 
   file { $config_file_modeler:
@@ -141,8 +142,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_modeler),
     require => Exec['config_file_modeler_folder'],
-#    require => Service[$service_name],
-#    notify  => Service[$service_name],
+    notify  => Exec[$service_name],
   }
 
   file { $config_file_rest:
@@ -152,8 +152,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_rest),
     require => Exec['config_file_rest_folder'],
-#    require => Service[$service_name],
-#    notify  => Service[$service_name],
+    notify  => Exec[$service_name],
   }
 
   file { $config_file_task:
@@ -163,8 +162,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_task),
     require => Exec['config_file_task_folder'],
-#    require => Service[$service_name],
-#    notify  => Service[$service_name],
+    notify  => Exec[$service_name],
   }
 
 }
