@@ -18,6 +18,26 @@ class flowable_engine::install(
     ensure => present,
   }
 
+  file { '/usr/share/java/tomcat/postgresql-jdbc.jar':
+     ensure => 'link',
+     target => '/usr/share/java/postgresql-jdbc.jar',
+  }
+
+  file { '/usr/share/java/tomcat/postgresql-jdbc2.jar':
+     ensure => 'link',
+     target => '/usr/share/java/postgresql-jdbc2.jar',
+  }
+
+  file { '/usr/share/java/tomcat/postgresql-jdbc2ee.jar':
+     ensure => 'link',
+     target => '/usr/share/java/postgresql-jdbc2ee.jar',
+  }
+
+  file { '/usr/share/java/tomcat/postgresql-jdbc3.jar':
+     ensure => 'link',
+     target => '/usr/share/java/postgresql-jdbc3.jar',
+  }
+
   archive { "${webapps_folder}/${source_file_name}":
     ensure          => present,
     source          => $source_file_url,
