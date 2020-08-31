@@ -58,7 +58,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     source => "puppet:///modules/flowable_engine/index.html",
-    require => Service[$service_name],
+#    require => Service[$service_name],
     notify  => Service[$service_name],
   }
 
