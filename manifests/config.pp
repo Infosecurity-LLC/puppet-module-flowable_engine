@@ -68,7 +68,6 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_tomcat),
-    require => Service[$service_name],
     notify  => Service[$service_name],
   }
 
