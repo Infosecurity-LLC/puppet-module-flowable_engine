@@ -13,11 +13,6 @@ class flowable_engine::params {
   $source_file_url              = 'https://github.com/flowable/flowable-engine/releases/download/flowable-6.5.0/flowable-6.5.0.zip'
   $source_file_name             = 'flowable-6.5.0.zip'
   $source_file_md5              = '0553c98cebe11c12c8e4b6f3c37d5d15'
-  $war_file1                    = 'flowable-admin.war'
-  $war_file2                    = 'flowable-idm.war'
-  $war_file3                    = 'flowable-modeler.war'
-  $war_file4                    = 'flowable-rest.war'
-  $war_file5                    = 'flowable-task.war'
   $proxy_url                    = ''
 
   $webapps_folder               = '/var/lib/tomcat/webapps'
