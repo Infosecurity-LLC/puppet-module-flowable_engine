@@ -11,6 +11,11 @@ class flowable_engine(
   $source_file_url              = $flowable_engine::params::source_file_url,
   $source_file_name             = $flowable_engine::params::source_file_name,
   $source_file_md5              = $flowable_engine::params::source_file_md5,
+  $war_file1                    = $flowable_engine::params::war_file1,
+  $war_file2                    = $flowable_engine::params::war_file2,
+  $war_file3                    = $flowable_engine::params::war_file3,
+  $war_file4                    = $flowable_engine::params::war_file4,
+  $war_file5                    = $flowable_engine::params::war_file5,
 
   $proxy_url                    = $flowable_engine::params::proxy_url,
 

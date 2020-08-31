@@ -58,7 +58,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     source => "puppet:///modules/flowable_engine/index.html",
-    require => File['/var/lib/tomcat/webapps/ROOT'],
+    require => Service[$service_name],
+#    require => File['/var/lib/tomcat/webapps/ROOT'],
   }
 
   file { $config_file_tomcat:
@@ -67,7 +68,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_tomcat),
-    require => File['/etc/tomcat'],
+    require => Service[$service_name],
+#    require => File['/etc/tomcat'],
     notify  => Service[$service_name],
   }
 
@@ -77,7 +79,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_admin),
-    require => File['/var/lib/tomcat/webapps/flowable-admin/WEB-INF/classes'],
+    require => Service[$service_name],
+#    require => File['/var/lib/tomcat/webapps/flowable-admin/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
@@ -87,7 +90,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_idm),
-    require => File['/var/lib/tomcat/webapps/flowable-idm/WEB-INF/classes'],
+    require => Service[$service_name],
+#    require => File['/var/lib/tomcat/webapps/flowable-idm/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
@@ -97,7 +101,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_modeler),
-    require => File['/var/lib/tomcat/webapps/flowable-modeler/WEB-INF/classes'],
+    require => Service[$service_name],
+#    require => File['/var/lib/tomcat/webapps/flowable-modeler/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
@@ -107,7 +112,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_rest),
-    require => File['/var/lib/tomcat/webapps/flowable-rest/WEB-INF/classes'],
+    require => Service[$service_name],
+#    require => File['/var/lib/tomcat/webapps/flowable-rest/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
@@ -117,7 +123,8 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_task),
-    require => File['/var/lib/tomcat/webapps/flowable-task/WEB-INF/classes'],
+    require => Service[$service_name],
+#    require => File['/var/lib/tomcat/webapps/flowable-task/WEB-INF/classes'],
     notify  => Service[$service_name],
   }
 
