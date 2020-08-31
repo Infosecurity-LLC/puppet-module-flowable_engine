@@ -118,7 +118,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_admin),
-    require => Exec('config_file_admin_folder'),
+    require => Exec['config_file_admin_folder'],
 #    require => Service[$service_name],
 #    subscribe  => Service[$service_name],
   }
@@ -129,7 +129,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_idm),
-    require => Exec('config_file_idm_folder'),
+    require => Exec['config_file_idm_folder'],
 #    require => Service[$service_name],
 #    subscribe  => Service[$service_name],
   }
@@ -140,7 +140,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_modeler),
-    require => Exec('config_file_modeler_folder'),
+    require => Exec['config_file_modeler_folder'],
 #    require => Service[$service_name],
 #    subscribe  => Service[$service_name],
   }
@@ -151,7 +151,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_rest),
-    require => Exec('config_file_rest_folder'),
+    require => Exec['config_file_rest_folder'],
 #    require => Service[$service_name],
 #    subscribe  => Service[$service_name],
   }
@@ -162,7 +162,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_task),
-    require => Exec('config_file_task_folder'),
+    require => Exec['config_file_task_folder'],
 #    require => Service[$service_name],
 #    subscribe  => Service[$service_name],
   }
