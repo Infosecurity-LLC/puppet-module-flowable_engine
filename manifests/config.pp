@@ -59,7 +59,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     source => "puppet:///modules/flowable_engine/index.html",
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_tomcat:
@@ -68,7 +68,7 @@ class flowable_engine::config(
     group   => $config_group,
     mode    => $config_mode,
     content => template($config_template_tomcat),
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_admin:
@@ -78,7 +78,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_admin),
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_idm:
@@ -88,7 +88,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_idm),
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_modeler:
@@ -98,7 +98,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_modeler),
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_rest:
@@ -108,7 +108,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_rest),
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_task:
@@ -118,7 +118,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_task),
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
 }
