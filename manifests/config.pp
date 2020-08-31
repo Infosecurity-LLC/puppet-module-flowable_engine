@@ -56,48 +56,39 @@ class flowable_engine::config(
 
 ) {
 
-  $index_file_flowable          = '/var/lib/tomcat/webapps/ROOT/index.html'
-
-  $config_file_tomcat           = '/etc/tomcat/server.xml'
-  $config_file_admin            = '/var/lib/tomcat/webapps/flowable-admin/WEB-INF/classes/flowable-default.properties'
-  $config_file_idm              = '/var/lib/tomcat/webapps/flowable-idm/WEB-INF/classes/flowable-default.properties'
-  $config_file_modeler          = '/var/lib/tomcat/webapps/flowable-modeler/WEB-INF/classes/flowable-default.properties'
-  $config_file_rest             = '/var/lib/tomcat/webapps/flowable-rest/WEB-INF/classes/flowable-default.properties'
-  $config_file_task             = '/var/lib/tomcat/webapps/flowable-task/WEB-INF/classes/flowable-default.properties'
-
   exec { 'index_file_flowable_folder':
     command => '/bin/true',
-    onlyif => "/bin/test -d ${index_file_flowable%/*}",
+    onlyif => "/bin/test -d /var/lib/tomcat/webapps/ROOT",
   }
 
   exec { 'config_file_tomcat_folder':
     command => '/bin/true',
-    onlyif => "/bin/test -d ${config_file_tomcat%/*}",
+    onlyif => "/bin/test -d /etc/tomcat",
   }
 
   exec { 'config_file_admin_folder':
     command => '/bin/true',
-    onlyif => "/bin/test -d ${config_file_admin%/*}",
+    onlyif => "/bin/test -d /var/lib/tomcat/webapps/flowable-admin/WEB-INF/classes",
   }
 
   exec { 'config_file_idm_folder':
     command => '/bin/true',
-    onlyif => "/bin/test -d ${config_file_idm%/*}",
+    onlyif => "/bin/test -d /var/lib/tomcat/webapps/flowable-idm/WEB-INF/classes",
   }
 
   exec { 'config_file_modeler_folder':
     command => '/bin/true',
-    onlyif => "/bin/test -d ${config_file_modeler%/*}",
+    onlyif => "/bin/test -d /var/lib/tomcat/webapps/flowable-modeler/WEB-INF/classes",
   }
 
   exec { 'config_file_rest_folder':
     command => '/bin/true',
-    onlyif => "/bin/test -d ${config_file_rest%/*}",
+    onlyif => "/bin/test -d /var/lib/tomcat/webapps/flowable-rest/WEB-INF/classes",
   }
 
   exec { 'config_file_task_folder':
     command => '/bin/true',
-    onlyif => "/bin/test -d ${config_file_task%/*}",
+    onlyif => "/bin/test -d /var/lib/tomcat/webapps/flowable-task/WEB-INF/classes",
   }
 
   file { $index_file_flowable:
