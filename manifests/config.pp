@@ -56,7 +56,7 @@ class flowable_engine::config(
 ) {
 
   exec { $service_name:
-    command => "systemctl restart $service_name",
+    command => "/bin/systemctl restart $service_name",
     refreshonly => true,
   }
 
