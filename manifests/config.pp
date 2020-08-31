@@ -99,7 +99,7 @@ class flowable_engine::config(
     source => "puppet:///modules/flowable_engine/index.html",
     require => Exec['index_file_flowable_folder'],
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_tomcat:
@@ -109,7 +109,7 @@ class flowable_engine::config(
     mode    => $config_mode,
     content => template($config_template_tomcat),
     require => Exec['config_file_tomcat_folder'],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_admin:
@@ -120,7 +120,7 @@ class flowable_engine::config(
     content => template($config_template_admin),
     require => Exec['config_file_admin_folder'],
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_idm:
@@ -131,7 +131,7 @@ class flowable_engine::config(
     content => template($config_template_idm),
     require => Exec['config_file_idm_folder'],
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_modeler:
@@ -142,7 +142,7 @@ class flowable_engine::config(
     content => template($config_template_modeler),
     require => Exec['config_file_modeler_folder'],
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_rest:
@@ -153,7 +153,7 @@ class flowable_engine::config(
     content => template($config_template_rest),
     require => Exec['config_file_rest_folder'],
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
   file { $config_file_task:
@@ -164,7 +164,7 @@ class flowable_engine::config(
     content => template($config_template_task),
     require => Exec['config_file_task_folder'],
 #    require => Service[$service_name],
-    notify  => Service[$service_name],
+#    notify  => Service[$service_name],
   }
 
 }
