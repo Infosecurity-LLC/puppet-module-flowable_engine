@@ -10,6 +10,7 @@ class flowable_engine(
 
   $source_file_url              = $flowable_engine::params::source_file_url,
   $source_file_name             = $flowable_engine::params::source_file_name,
+  $source_file_md5              = $flowable_engine::params::source_file_md5,
 
   $proxy_url                    = $flowable_engine::params::proxy_url,
 
@@ -62,8 +63,8 @@ class flowable_engine(
 
   anchor { 'flowable_engine::start': }
   -> class { 'flowable_engine::install': }
-  -> class { 'flowable_engine::config': }
   -> class { 'flowable_engine::service': }
+  -> class { 'flowable_engine::config': }
   -> anchor { 'flowable_engine::end': }
 
 }

@@ -4,6 +4,7 @@ class flowable_engine::install(
   $version          = $flowable_engine::version,
   $source_file_url  = $flowable_engine::source_file_url,
   $source_file_name = $flowable_engine::source_file_name,
+  $source_file_md5  = $flowable_engine::source_file_md5,
   $proxy_url        = $flowable_engine::proxy_url,
   $package_name     = $flowable_engine::package_name,
   $service_name     = $flowable_engine::service_name,
@@ -17,17 +18,11 @@ class flowable_engine::install(
     ensure => present,
   }
 
-#  exec { $source_file_name:
-#    environment => [
-#      "http_proxy=$proxy_url",
-#      "https_proxy=$proxy_url",
-#    ],
-#    command => "/bin/curl -x $proxy_url $source_file_url -o ${webapps_folder}/${source_file_name}",
-#  }
-
   archive { "${webapps_folder}/${source_file_name}":
     ensure          => present,
     source          => $source_file_url,
+    checksum        => $source_file_md5,
+    checksum_type   => 'md5',
     extract         => true,
     temp_dir        => $webapps_folder,
     extract_path    => $webapps_folder,
